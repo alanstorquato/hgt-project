@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ApiResource()
+*  @ORM\Table(name="USUARIOS")
  * @ORM\Entity(repositoryClass="App\Repository\UsuariosRepository")
  */
 class Usuarios implements UserInterface
@@ -102,10 +103,27 @@ class Usuarios implements UserInterface
      */
     private $tickets;
 
+    // /**
+    //  * @OneToMany(targetEntity="App\Entity\Anuncios", mappedBy="id_anuncio")
+    //  */
+    // private $anuncios;
+
+    // /**
+    //  * @OneToMany(targetEntity="App\Entity\CartoesCredito", mappedBy="id_cartao")
+    //  */
+    // private $cartoesCredito;
+
+    // /**
+    //  * @OneToMany(targetEntity="App\Entity\Pedidos", mappedBy="id_pedido")
+    //  */
+    // private $pedidos;
 
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
+        // $this->anuncios = new ArrayCollection();
+        // $this->cartoesCredito = new ArrayCollection();
+        // $this->pedidos = new ArrayCollection();
     }
 
     public function getTickets(): Collection
@@ -113,6 +131,21 @@ class Usuarios implements UserInterface
         return $this->tickets;
     }
 
+    // public function getAnuncios(): Collection
+    // {
+    //     return $this->anuncios;
+    // }
+
+    // public function getCartoesCredito(): Collection
+    // {
+    //     return $this->cartoesCredito;
+    // }
+
+    // public function getPedidos()
+    // {
+    //     return $this->pedidos;
+    // }
+    
     public function getId(): ?int
     {
         return $this->id;
