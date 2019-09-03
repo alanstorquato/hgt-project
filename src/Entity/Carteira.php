@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
+ * @ORM\Table(name="CARTEIRAS")
  * @ORM\Entity(repositoryClass="App\Repository\CarteiraRepository")
  */
 class Carteira

@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ApiResource()
-*  @ORM\Table(name="USUARIOS")
+ * @ORM\Table(name="USUARIOS")
  * @ORM\Entity(repositoryClass="App\Repository\UsuariosRepository")
  */
 class Usuarios implements UserInterface
@@ -49,7 +49,7 @@ class Usuarios implements UserInterface
     private $email = [];
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="decimal")
      */
     private $telefone;
 
@@ -103,10 +103,10 @@ class Usuarios implements UserInterface
      */
     private $tickets;
 
-    // /**
-    //  * @OneToMany(targetEntity="App\Entity\Anuncios", mappedBy="id_anuncio")
-    //  */
-    // private $anuncios;
+    /**
+     * @OneToMany(targetEntity="App\Entity\Anuncios", mappedBy="id_usuario")
+     */
+    private $anuncios;
 
     // /**
     //  * @OneToMany(targetEntity="App\Entity\CartoesCredito", mappedBy="id_cartao")
@@ -121,7 +121,7 @@ class Usuarios implements UserInterface
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
-        // $this->anuncios = new ArrayCollection();
+        $this->anuncios = new ArrayCollection();
         // $this->cartoesCredito = new ArrayCollection();
         // $this->pedidos = new ArrayCollection();
     }
@@ -131,10 +131,10 @@ class Usuarios implements UserInterface
         return $this->tickets;
     }
 
-    // public function getAnuncios(): Collection
-    // {
-    //     return $this->anuncios;
-    // }
+    public function getAnuncios(): Collection
+    {
+        return $this->anuncios;
+    }
 
     // public function getCartoesCredito(): Collection
     // {
@@ -211,12 +211,12 @@ class Usuarios implements UserInterface
         return $this;
     }
 
-    public function getTelefone(): ?string
+    public function getTelefone(): ?float
     {
         return $this->telefone;
     }
 
-    public function setTelefone(string $telefone): self
+    public function setTelefone(float $telefone): self
     {
         $this->telefone = $telefone;
 

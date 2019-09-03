@@ -29,7 +29,6 @@ class Tickets
      */
     private $is_meia_entrada;
 
-
     /**
      * @ManyToOne(targetEntity="App\Entity\Usuarios", inversedBy="tickets")
      * @ORM\JoinColumn(name="id_titular", referencedColumnName="id_usuario", nullable=false)
