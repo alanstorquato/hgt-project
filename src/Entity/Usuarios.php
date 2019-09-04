@@ -17,11 +17,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="App\Repository\UsuariosRepository")
  * @UniqueEntity(
  *     fields={"email"},
- *     message="este e-mail já é usado no nosso sistema"
+ *     message="E-mail já cadastrado"
  * )
  * @UniqueEntity(
  *     fields={"usuario"},
- *     message="este usuario já é usado no nosso sistema"
+ *     message="Usuario ja cadastrado"
  * )
  */
 class Usuarios implements UserInterface
