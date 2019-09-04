@@ -8,11 +8,21 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ApiResource()
  * @ORM\Table(name="USUARIOS")
  * @ORM\Entity(repositoryClass="App\Repository\UsuariosRepository")
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="este e-mail já é usado no nosso sistema"
+ * )
+ * @UniqueEntity(
+ *     fields={"usuario"},
+ *     message="este usuario já é usado no nosso sistema"
+ * )
  */
 class Usuarios implements UserInterface
 {
@@ -24,31 +34,38 @@ class Usuarios implements UserInterface
     private $id;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $primeiro_nome;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $sobrenome;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="date")
      */
     private $dt_nascimento;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $cpf;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Email()
      * @ORM\Column(type="string", length=255)
      */
     private $email = [];
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="decimal")
      */
     private $telefone;
@@ -59,21 +76,25 @@ class Usuarios implements UserInterface
     private $img_perfil;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $usuario;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $senha;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $logradouro;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $numero;
@@ -84,16 +105,19 @@ class Usuarios implements UserInterface
     private $complemento;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $cep;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $cidade;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $uf;
