@@ -123,12 +123,12 @@ class Usuarios implements UserInterface
     private $uf;
 
     /**
-     * @OneToMany(targetEntity="App\Entity\Tickets", mappedBy="id_titular")
+     * @ORM\OneToMany(targetEntity="App\Entity\Tickets", mappedBy="id_titular")
      */
     private $tickets;
 
     /**
-     * @OneToMany(targetEntity="App\Entity\Anuncios", mappedBy="id_usuario")
+     * @ORM\OneToMany(targetEntity="App\Entity\Anuncios", mappedBy="id_usuario")
      */
     private $anuncios;
 
