@@ -8,11 +8,18 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     itemOperations={"get", "put"},
+ *     collectionOperations={"post"},
+ *     normalizationContext={
+            "groups"={"read"}
+ *     }
+ * )
  * @ORM\Table(name="USUARIOS")
  * @ORM\Entity(repositoryClass="App\Repository\UsuariosRepository")
  * @UniqueEntity(
@@ -30,34 +37,40 @@ class Usuarios implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_usuario", type="integer")
+     * @Groups({"read"})
      */
     private $id;
 
     /**
+     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $primeiro_nome;
 
     /**
+     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $sobrenome;
 
     /**
+     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="date")
      */
     private $dt_nascimento;
 
     /**
+     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $cpf;
 
     /**
+     * @Groups({"read"})
      * @Assert\NotBlank
      * @Assert\Email()
      * @ORM\Column(type="string", length=255)
@@ -65,17 +78,20 @@ class Usuarios implements UserInterface
     private $email = [];
 
     /**
+     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="decimal")
      */
     private $telefone;
 
     /**
+     * @Groups({"read"})
      * @ORM\Column(type="string", length=255)
      */
     private $img_perfil;
 
     /**
+     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
@@ -88,46 +104,54 @@ class Usuarios implements UserInterface
     private $senha;
 
     /**
+     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $logradouro;
 
     /**
+     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $numero;
 
     /**
+     * @Groups({"read"})
      * @ORM\Column(type="string", length=255)
      */
     private $complemento;
 
     /**
+     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $cep;
 
     /**
+     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $cidade;
 
     /**
+     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $uf;
 
     /**
+     * @Groups({"read"})
      * @ORM\OneToMany(targetEntity="App\Entity\Tickets", mappedBy="id_titular")
      */
     private $tickets;
 
     /**
+     * @Groups({"read"})
      * @ORM\OneToMany(targetEntity="App\Entity\Anuncios", mappedBy="id_usuario")
      */
     private $anuncios;

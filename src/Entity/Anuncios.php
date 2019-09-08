@@ -20,13 +20,18 @@ class Anuncios
 {
     /**
      * @ORM\Id()
-     * @ORM\ManyToOne(targetEntity="App\Entity\Usuarios")
+     * @ORM\GeneratedValue()
+     * @ORM\Column(name="id_anuncio", type="integer")
+     */
+    private $id;
+
+     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Usuarios", inversedBy="anuncios")
      * @ORM\JoinColumn(name="id_usuario", referencedColumnName="id_usuario", nullable=false)
      */
     private $id_usuario;
 
     /**
-     * @ORM\Id()
      * @ORM\ManyToOne(targetEntity="App\Entity\Tickets")
      * @ORM\JoinColumn(name="id_ticket", referencedColumnName="id_ticket", nullable=false)
      */
@@ -37,11 +42,10 @@ class Anuncios
      */
     private $preco;
 
-    // public function __construct($id_usuario, $id_ticket)
-    // {
-    //     $this->id_usuario = $id_usuario;
-    //     $this->id_ticket = $id_ticket;
-    // }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getPreco(): ?float
     {
@@ -51,6 +55,31 @@ class Anuncios
     public function setPreco(float $preco): self
     {
         $this->preco = $preco;
+
+        return $this;
+    }
+
+    public function getIdUsuario(): Usuarios
+    {
+        return $this->id_usuario;
+    }
+
+    public function setIdUsuario(Usuarios $id_usuario): self
+    {
+        $this->id_usuario = $id_usuario;
+
+        return $this;
+    }
+
+    public function getIdTicket(): Tickets
+    {
+        return $this->id_ticket;
+    }
+
+
+    public function setIdTicket(Tickets $id_ticket): self
+    {
+        $this->id_ticket = $id_ticket;
 
         return $this;
     }
