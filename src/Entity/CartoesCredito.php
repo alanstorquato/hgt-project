@@ -6,8 +6,12 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     itemOperations={"get", "put"},
+ *     collectionOperations={"post"},
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\CartoesCreditoRepository")
+ * @ORM\Table(name="CARTOES_CREDITO")
  */
 class CartoesCredito
 {
@@ -36,7 +40,13 @@ class CartoesCredito
     /**
      * @ORM\Column(type="integer")
      */
-    private $cod_seguraca;
+    private $cod_seguranca;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Usuarios", inversedBy="cartoesCredito")
+     * @ORM\JoinColumn(name="id_usuario", referencedColumnName="id_usuario", nullable=false)
+     */
+    private $id_usuario;
 
     public function getId(): ?int
     {
@@ -67,27 +77,41 @@ class CartoesCredito
         return $this;
     }
 
-    public function getDtVencimento(): ?\DateTimeInterface
+    public function getDtVencimento(): ?\DateTime
     {
         return $this->dt_vencimento;
     }
 
-    public function setDtVencimento(\DateTimeInterface $dt_vencimento): self
+    public function setDtVencimento(\DateTime $dt_vencimento): self
     {
         $this->dt_vencimento = $dt_vencimento;
 
         return $this;
     }
 
-    public function getCodSeguraca(): ?int
+    public function getCodSeguranca(): ?int
     {
-        return $this->cod_seguraca;
+        return $this->cod_seguranca;
     }
 
-    public function setCodSeguraca(int $cod_seguraca): self
+    public function setCodSeguranca(int $cod_seguranca): self
     {
-        $this->cod_seguraca = $cod_seguraca;
+        $this->cod_seguranca = $cod_seguranca;
 
         return $this;
     }
+
+    public function getIdUsuario(): Usuarios
+    {
+        return $this->id_usuario;
+    }
+
+    function setIdUsuario(Usuarios $id_usuario): self
+    {
+        $this->id_usuario = $id_usuario;
+
+        return $this;
+    }
+
+
 }

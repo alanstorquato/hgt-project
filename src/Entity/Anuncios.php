@@ -8,13 +8,16 @@ use Doctrine\ORM\Mapping\ManyToOne;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ApiResource()
- * @ORM\Table(name="ANUNCIOS")
+ * @ApiResource(
+ *     itemOperations={"get", "put"},
+ *     collectionOperations={"post"},
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\AnunciosRepository")
  * @UniqueEntity(
  *     fields={"id_usuario", "id_ticket"},
  *     message="Anuncio já cadastrado"
  * )
+ * @ORM\Table(name="ANUNCIOS")
  */
 class Anuncios
 {

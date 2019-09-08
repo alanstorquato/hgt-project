@@ -4,9 +4,17 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     itemOperations={"get", "put"},
+ *     collectionOperations={"post"},
+ * )
+ * @UniqueEntity(
+ *     fields={"id_usuario"},
+ *     message="Este usuario já possui uma carteira"
+ * )
  * @ORM\Table(name="CARTEIRAS")
  * @ORM\Entity(repositoryClass="App\Repository\CarteiraRepository")
  */
@@ -24,6 +32,13 @@ class Carteira
      */
     private $saldo;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Usuarios", inversedBy="carteiras")
+     * @ORM\JoinColumn(name="id_usuario", referencedColumnName="id_usuario", nullable=false)
+     */
+    private $id_usuario;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -40,4 +55,17 @@ class Carteira
 
         return $this;
     }
+
+    public function getIdUsuario(): Usuarios
+    {
+        return $this->id_usuario;
+    }
+
+    public function setIdUsuario(Usuarios $id_usuario): self
+    {
+        $this->id_usuario = $id_usuario;
+
+        return $this;
+    }
+
 }

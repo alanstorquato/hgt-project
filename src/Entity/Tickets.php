@@ -7,8 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     itemOperations={"get", "put"},
+ *     collectionOperations={"post"},
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\TicketsRepository")
+ * @ORM\Table(name="TICKETS")
  */
 class Tickets
 {

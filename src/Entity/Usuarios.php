@@ -17,10 +17,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     itemOperations={"get", "put"},
  *     collectionOperations={"post"},
  *     normalizationContext={
-            "groups"={"read"}
+ *          "groups"={"read"}
  *     }
  * )
- * @ORM\Table(name="USUARIOS")
  * @ORM\Entity(repositoryClass="App\Repository\UsuariosRepository")
  * @UniqueEntity(
  *     fields={"email"},
@@ -30,6 +29,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     fields={"usuario"},
  *     message="Usuario ja cadastrado"
  * )
+ * @ORM\Table(name="USUARIOS")
  */
 class Usuarios implements UserInterface
 {
@@ -156,22 +156,31 @@ class Usuarios implements UserInterface
      */
     private $anuncios;
 
-    // /**
-    //  * @OneToMany(targetEntity="App\Entity\CartoesCredito", mappedBy="id_cartao")
-    //  */
-    // private $cartoesCredito;
+     /**
+      * @Groups({"read"})
+      * @OneToMany(targetEntity="App\Entity\CartoesCredito", mappedBy="id_usuario")
+      */
+     private $cartoesCredito;
 
-    // /**
-    //  * @OneToMany(targetEntity="App\Entity\Pedidos", mappedBy="id_pedido")
-    //  */
-    // private $pedidos;
+    /**
+     * @Groups({"read"})
+     * @OneToMany(targetEntity="App\Entity\Carteira", mappedBy="id_usuario")
+     */
+     private $carteiras;
+
+    /**
+     * @Groups({"read"})
+     * @ORM\OneToMany(targetEntity="App\Entity\FormasPagamento", mappedBy="id_usuario")
+     */
+    private $formas_pagamento;
+
 
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
         $this->anuncios = new ArrayCollection();
-        // $this->cartoesCredito = new ArrayCollection();
-        // $this->pedidos = new ArrayCollection();
+        $this->cartoesCredito = new ArrayCollection();
+        $this->formas_pagamento = new ArrayCollection();
     }
 
     public function getTickets(): Collection
@@ -184,16 +193,21 @@ class Usuarios implements UserInterface
         return $this->anuncios;
     }
 
-    // public function getCartoesCredito(): Collection
-    // {
-    //     return $this->cartoesCredito;
-    // }
+     public function getCartoesCredito(): Collection
+     {
+         return $this->cartoesCredito;
+     }
 
-    // public function getPedidos()
-    // {
-    //     return $this->pedidos;
-    // }
-    
+    public function getCarteiras()
+    {
+        return $this->carteiras;
+    }
+
+    public function getFormasPagamento(): Collection
+    {
+        return $this->formas_pagamento;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
