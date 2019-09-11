@@ -77,12 +77,12 @@ class CartoesCredito
         return $this;
     }
 
-    public function getDtVencimento(): ?\DateTime
+    public function getDtVencimento(): ?\DateTimeInterface
     {
         return $this->dt_vencimento;
     }
 
-    public function setDtVencimento(\DateTime $dt_vencimento): self
+    public function setDtVencimento(\DateTimeInterface $dt_vencimento): self
     {
         $this->dt_vencimento = $dt_vencimento;
 

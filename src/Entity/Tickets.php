@@ -85,16 +85,16 @@ class Tickets
 
         return $this;
     }
-
+    
     public function getIdPedido(): Pedidos
     {
         return $this->id_pedido;
     }
-
+    
     public function setIdPedido(Pedidos $id_pedido): self
     {
         $this->id_pedido = $id_pedido;
-
+        
         return $this;
     }
 

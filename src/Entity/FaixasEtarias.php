@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\FaixasEtariasRepository")
+ * @ORM\Table(name="FAIXAS_ETARIAS")
  */
 class FaixasEtarias
 {
