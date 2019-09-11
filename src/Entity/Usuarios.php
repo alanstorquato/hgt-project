@@ -6,7 +6,6 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\OneToMany;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -158,13 +157,13 @@ class Usuarios implements UserInterface
 
      /**
       * @Groups({"read"})
-      * @OneToMany(targetEntity="App\Entity\CartoesCredito", mappedBy="id_usuario")
+      * @ORM\OneToMany(targetEntity="App\Entity\CartoesCredito", mappedBy="id_usuario")
       */
      private $cartoesCredito;
 
     /**
      * @Groups({"read"})
-     * @OneToMany(targetEntity="App\Entity\Carteira", mappedBy="id_usuario")
+     * @ORM\OneToMany(targetEntity="App\Entity\Carteira", mappedBy="id_usuario")
      */
      private $carteiras;
 
