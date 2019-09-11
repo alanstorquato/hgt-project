@@ -4,12 +4,11 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * @ApiResource(
  *     itemOperations={"get", "put"},
- *     collectionOperations={"post"},
+ *     collectionOperations={"post", "get"},
  * )
  * @ORM\Entity(repositoryClass="App\Repository\TicketsRepository")
  * @ORM\Table(name="TICKETS")
@@ -38,6 +37,12 @@ class Tickets
      * @ORM\JoinColumn(name="id_titular", referencedColumnName="id_usuario", nullable=false)
      */
     private $id_titular;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pedidos", inversedBy="tickets")
+     * @ORM\JoinColumn(name="id_pedido", referencedColumnName="id_pedido", nullable=false)
+     */
+    private $id_pedido;
 
 
     public function getId(): ?int
@@ -80,5 +85,19 @@ class Tickets
 
         return $this;
     }
+
+    public function getIdPedido(): Pedidos
+    {
+        return $this->id_pedido;
+    }
+
+    public function setIdPedido(Pedidos $id_pedido): self
+    {
+        $this->id_pedido = $id_pedido;
+
+        return $this;
+    }
+
+
 
 }

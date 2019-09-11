@@ -3,7 +3,9 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ApiResource()
@@ -29,6 +31,22 @@ class Pedidos
      * @ORM\JoinColumn(name="id_forma_pg", referencedColumnName="id_forma_pg", nullable=false)
      */
     private $id_forma_pg;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Tickets", mappedBy="id_pedido")
+     */
+    private $tickets;
+
+    public function __construct()
+    {
+        $this->tickets = new ArrayCollection();
+    }
+
+    public function getTickets(): Collection
+    {
+        return $this->tickets;
+    }
+
 
     public function getId(): ?int
     {
