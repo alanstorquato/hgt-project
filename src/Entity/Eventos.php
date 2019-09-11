@@ -3,11 +3,14 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\EventosRepository")
+ * @ORM\Table(name="EVENTOS")
  */
 class Eventos
 {
@@ -21,7 +24,7 @@ class Eventos
     /**
      * @ORM\Column(type="date")
      */
-    private $data_pubicacao;
+    private $data_publicacao;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -31,12 +34,22 @@ class Eventos
     /**
      * @ORM\Column(type="date")
      */
+    private $dt_inicio_evento;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $dt_fim_evento;
+
+    /**
+     * @ORM\Column(type="date")
+     */
     private $dt_inicio_venda;
 
     /**
      * @ORM\Column(type="time")
      */
-    private $hora_inicio_venda;
+    private $hora_inicio_evento;
 
     /**
      * @ORM\Column(type="time")
@@ -49,23 +62,38 @@ class Eventos
     private $descricao;
 
     /**
-     * @ORM\Column(type="bigint")
+     * @ORM\Column(type="integer")
      */
     private $visualizacoes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Atracoes", mappedBy="id_evento")
+     */
+    private $atracoes;
+
+    public function __construct()
+    {
+        $this->atracoes = new ArrayCollection();
+    }
+
+    public function getAtracoes(): Collection
+    {
+        return $this->atracoes;
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDataPubicacao(): ?\DateTimeInterface
+    public function getDataPublicacao(): ?\DateTimeInterface
     {
-        return $this->data_pubicacao;
+        return $this->data_publicacao;
     }
 
-    public function setDataPubicacao(\DateTimeInterface $data_pubicacao): self
+    public function setDataPublicacao(\DateTimeInterface $data_publicacao): self
     {
-        $this->data_pubicacao = $data_pubicacao;
+        $this->data_publicacao = $data_publicacao;
 
         return $this;
     }
@@ -82,6 +110,30 @@ class Eventos
         return $this;
     }
 
+    public function getDtInicioEvento(): ?\DateTimeInterface
+    {
+        return $this->dt_inicio_evento;
+    }
+
+    public function setDtInicioEvento(\DateTimeInterface $dt_inicio_evento): self
+    {
+        $this->dt_inicio_evento = $dt_inicio_evento;
+
+        return $this;
+    }
+
+    public function getDtFimEvento(): ?\DateTimeInterface
+    {
+        return $this->dt_fim_evento;
+    }
+
+    public function setDtFimEvento(\DateTimeInterface $dt_fim_evento): self
+    {
+        $this->dt_fim_evento = $dt_fim_evento;
+
+        return $this;
+    }
+
     public function getDtInicioVenda(): ?\DateTimeInterface
     {
         return $this->dt_inicio_venda;
@@ -94,14 +146,14 @@ class Eventos
         return $this;
     }
 
-    public function getHoraInicioVenda(): ?\DateTimeInterface
+    public function getHoraInicioEvento(): ?\DateTimeInterface
     {
-        return $this->hora_inicio_venda;
+        return $this->hora_inicio_evento;
     }
 
-    public function setHoraInicioVenda(\DateTimeInterface $hora_inicio_venda): self
+    public function setHoraInicioEvento(\DateTimeInterface $hora_inicio_evento): self
     {
-        $this->hora_inicio_venda = $hora_inicio_venda;
+        $this->hora_inicio_evento = $hora_inicio_evento;
 
         return $this;
     }
@@ -130,12 +182,12 @@ class Eventos
         return $this;
     }
 
-    public function getVisualizacoes(): ?string
+    public function getVisualizacoes(): ?int
     {
         return $this->visualizacoes;
     }
 
-    public function setVisualizacoes(string $visualizacoes): self
+    public function setVisualizacoes(int $visualizacoes): self
     {
         $this->visualizacoes = $visualizacoes;
 

@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ApiResource()
  * @ORM\Table(name="ATRACOES")
  * @ORM\Entity(repositoryClass="App\Repository\AtracoesRepository")
+ * @ORM\Table(name="ATRACOES")
  */
 class Atracoes
 {
@@ -28,6 +29,12 @@ class Atracoes
      * @ORM\Column(type="string", length=255)
      */
     private $rede_sociais;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Eventos", inversedBy="atracoes")
+     * @ORM\JoinColumn(name="id_evento", referencedColumnName="id_evento", nullable=false)
+     */
+    private $id_evento;
 
     public function getId(): ?int
     {
@@ -57,4 +64,17 @@ class Atracoes
 
         return $this;
     }
+
+    public function getIdEvento(): Eventos
+    {
+        return $this->id_evento;
+    }
+
+    public function setIdEvento(Eventos $id_evento): self
+    {
+        $this->id_evento = $id_evento;
+
+        return $this;
+    }
+
 }
