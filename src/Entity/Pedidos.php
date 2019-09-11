@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\PedidosRepository")
+ * @ORM\Table(name="PEDIDOS")
  */
 class Pedidos
 {
@@ -20,6 +23,12 @@ class Pedidos
      * @ORM\Column(type="boolean")
      */
     private $is_valido;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\FormasPagamento", inversedBy="pedidos")
+     * @ORM\JoinColumn(name="id_forma_pg", referencedColumnName="id_forma_pg", nullable=false)
+     */
+    private $id_forma_pg;
 
     public function getId(): ?int
     {
@@ -37,4 +46,20 @@ class Pedidos
 
         return $this;
     }
+
+
+    public function getIdFormaPg(): FormasPagamento
+    {
+        return $this->id_forma_pg;
+    }
+
+
+    public function setIdFormaPg(FormasPagamento $id_forma_pg): self
+    {
+        $this->id_forma_pg = $id_forma_pg;
+
+        return $this;
+    }
+
+
 }
