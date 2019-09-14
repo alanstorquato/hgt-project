@@ -152,12 +152,12 @@ class Locais
 
     public function getCapacidadeMaxima(): ?string
     {
-        return $this->capacidade_maxima;
+        return $this->capacidade_max;
     }
 
-    public function setCapacidadeMaxima(string $capacidade_maxima): self
+    public function setCapacidadeMaxima(string $capacidade_max): self
     {
-        $this->capacidade_maxima = $capacidade_maxima;
+        $this->capacidade_max = $capacidade_max;
 
         return $this;
     }

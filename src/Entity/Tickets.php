@@ -23,14 +23,25 @@ class Tickets
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_evento;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $is_meia_entrada;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $setor;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $preco;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Eventos", inversedBy="tickets")
+     * @ORM\JoinColumn(name="id_evento", referencedColumnName="id_evento", nullable=false)
+     */
+    private $id_evento;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Usuarios", inversedBy="tickets")
@@ -50,17 +61,6 @@ class Tickets
         return $this->id;
     }
 
-    public function getIdEvento(): ?int
-    {
-        return $this->id_evento;
-    }
-
-    public function setIdEvento(int $id_evento): self
-    {
-        $this->id_evento = $id_evento;
-
-        return $this;
-    }
 
     public function getIsMeiaEntrada(): ?bool
     {
@@ -73,6 +73,32 @@ class Tickets
 
         return $this;
     }
+
+    public function getSetor():?string
+    {
+        return $this->setor;
+    }
+
+    public function setSetor(string $setor): self
+    {
+        $this->setor = $setor;
+
+        return $this;
+    }
+
+    public function getPreco(): ?float
+    {
+        return $this->preco;
+    }
+
+    public function setPreco(float $preco): self
+    {
+        $this->preco = $preco;
+
+        return $this;
+    }
+
+
 
     public function getIdTitular(): Usuarios
     {
@@ -98,6 +124,17 @@ class Tickets
         return $this;
     }
 
+    public function getIdEvento(): Eventos
+    {
+        return $this->id_evento;
+    }
+
+    public function setIdEvento(Eventos $id_evento): self
+    {
+        $this->id_evento = $id_evento;
+
+        return $this;
+    }
 
 
 }

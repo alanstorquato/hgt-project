@@ -93,11 +93,17 @@ class Eventos
      */
     private $faixas_etarias;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Tickets", mappedBy="id_evento")
+     */
+    private $tickets;
+
     public function __construct()
     {
         $this->atracoes = new ArrayCollection();
         $this->setores = new ArrayCollection();
         $this->faixas_etarias = new ArrayCollection();
+        $this->tickets = new  ArrayCollection();
     }
 
     public function getAtracoes(): Collection
@@ -114,6 +120,12 @@ class Eventos
     {
         return $this->faixas_etarias;
     }
+
+    public function getTickets(): Collection
+    {
+        return $this->tickets;
+    }
+
 
     public function getId(): ?int
     {
