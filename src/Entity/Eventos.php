@@ -67,18 +67,52 @@ class Eventos
     private $visualizacoes;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Produtores", inversedBy="eventos")
+     * @ORM\JoinColumn(name="id_produtor", referencedColumnName="id_produtor", nullable=false)
+     */
+    private $id_produtor;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categoria", inversedBy="eventos")
+     * @ORM\JoinColumn(name="id_categoria", referencedColumnName="id_categoria", nullable=false)
+     */
+    private $id_categoria;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Atracoes", mappedBy="id_evento")
      */
     private $atracoes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Setores", mappedBy="id_evento")
+     */
+    private $setores;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FaixasEtarias", mappedBy="id_evento")
+     */
+    private $faixas_etarias;
+
     public function __construct()
     {
         $this->atracoes = new ArrayCollection();
+        $this->setores = new ArrayCollection();
+        $this->faixas_etarias = new ArrayCollection();
     }
 
     public function getAtracoes(): Collection
     {
         return $this->atracoes;
+    }
+
+    public function getSetores(): Collection
+    {
+        return $this->setores;
+    }
+
+    public function getFaixasEtarias(): Collection
+    {
+        return $this->faixas_etarias;
     }
 
     public function getId(): ?int
@@ -193,4 +227,30 @@ class Eventos
 
         return $this;
     }
+
+    public function getIdProdutor(): Produtores
+    {
+        return $this->id_produtor;
+    }
+
+    public function setIdProdutor(Produtores $id_produtor): self
+    {
+        $this->id_produtor = $id_produtor;
+
+        return $this;
+    }
+
+    public function getIdCategoria(): Categoria
+    {
+        return $this->id_categoria;
+    }
+
+    public function setIdCategoria(Categoria $id_categoria): self
+    {
+        $this->id_categoria = $id_categoria;
+
+        return $this;
+    }
+
+
 }

@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
+ * @ORM\Table(name="CATEGORIAS")
  * @ORM\Entity(repositoryClass="App\Repository\CategoriaRepository")
  */
 class Categoria
@@ -22,6 +25,22 @@ class Categoria
      * @ORM\Column(type="string", length=255)
      */
     private $nome;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Eventos", mappedBy="id_categoria")
+     */
+    private $eventos;
+
+    public function __construct()
+    {
+        $this->eventos = new ArrayCollection();
+    }
+
+
+    public function getEventos(): Collection
+    {
+        return $this->eventos;
+    }
 
     public function getId(): ?int
     {

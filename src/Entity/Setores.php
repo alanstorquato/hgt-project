@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\SetoresRepository")
+ * @ORM\Table(name="SETORES")
  */
 class Setores
 {
@@ -26,12 +27,24 @@ class Setores
     /**
      * @ORM\Column(type="bigint")
      */
-    private $capaxidade_max;
+    private $capacidade_max;
 
     /**
      * @ORM\Column(type="float")
      */
     private $preco;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Eventos", inversedBy="setores")
+     * @ORM\JoinColumn(name="id_evento", referencedColumnName="id_evento", nullable=false)
+     */
+    private $id_evento;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Locais", inversedBy="setores")
+     * @ORM\JoinColumn(name="id_local", referencedColumnName="id_local", nullable=false)
+     */
+    private $id_local;
 
     public function getId(): ?int
     {
@@ -50,14 +63,14 @@ class Setores
         return $this;
     }
 
-    public function getCapaxidadeMax(): ?string
+    public function getCapacidadeMax(): ?string
     {
-        return $this->capaxidade_max;
+        return $this->capacidade_max;
     }
 
-    public function setCapaxidadeMax(string $capaxidade_max): self
+    public function setCapacidadeMax(string $capacidade_max): self
     {
-        $this->capaxidade_max = $capaxidade_max;
+        $this->capacidade_max = $capacidade_max;
 
         return $this;
     }
@@ -73,4 +86,32 @@ class Setores
 
         return $this;
     }
+
+    public function getIdEvento(): Eventos
+    {
+        return $this->id_evento;
+    }
+
+    public function setIdEvento(Eventos $id_evento): self
+    {
+        $this->id_evento = $id_evento;
+
+        return $this;
+    }
+
+    public function getIdLocal(): Locais
+    {
+        return $this->id_local;
+    }
+
+
+    public function setIdLocal(Locais $id_local): self
+    {
+        $this->id_local = $id_local;
+
+        return $this;
+    }
+
+
+
 }

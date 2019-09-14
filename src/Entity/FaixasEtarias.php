@@ -15,7 +15,7 @@ class FaixasEtarias
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(name="faixa_etaria", type="integer")
+     * @ORM\Column(name="id_faixa_etaria", type="integer")
      */
     private $id;
 
@@ -28,6 +28,12 @@ class FaixasEtarias
      * @ORM\Column(type="text")
      */
     private $descricao;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Eventos", inversedBy="faixas_etarias")
+     * @ORM\JoinColumn(name="id_evento", referencedColumnName="id_evento", nullable=false)
+     */
+    private $id_evento;
 
     public function getId(): ?int
     {

@@ -3,11 +3,14 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\LocaisRepository")
+ * @ORM\Table(name="LOCAIS")
  */
 class Locais
 {
@@ -51,7 +54,24 @@ class Locais
     /**
      * @ORM\Column(type="bigint")
      */
-    private $capaxidade_maxima;
+    private $capacidade_max;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Setores", mappedBy="id_local")
+     */
+    private $setores;
+
+    public function __construct()
+    {
+        $this->setores = new ArrayCollection();
+    }
+
+
+    public function getSetores(): Collection
+    {
+        return $this->setores;
+    }
+
 
     public function getId(): ?int
     {
@@ -130,14 +150,14 @@ class Locais
         return $this;
     }
 
-    public function getCapaxidadeMaxima(): ?string
+    public function getCapacidadeMaxima(): ?string
     {
-        return $this->capaxidade_maxima;
+        return $this->capacidade_maxima;
     }
 
-    public function setCapaxidadeMaxima(string $capaxidade_maxima): self
+    public function setCapacidadeMaxima(string $capacidade_maxima): self
     {
-        $this->capaxidade_maxima = $capaxidade_maxima;
+        $this->capacidade_maxima = $capacidade_maxima;
 
         return $this;
     }

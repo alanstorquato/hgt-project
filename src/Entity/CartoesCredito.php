@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  *     itemOperations={"get", "put"},
  *     collectionOperations={"post"},
  * )
- * @ORM\Entity(repositoryClass="App\Repository\CartoesCreditoRepository")
  * @ORM\Table(name="CARTOES_CREDITO")
+ * @ORM\Entity(repositoryClass="App\Repository\CartoesCreditoRepository")
  */
 class CartoesCredito
 {
