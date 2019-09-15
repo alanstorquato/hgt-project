@@ -25,7 +25,7 @@ class FaixasEtarias
     private $nome;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $descricao;
 
@@ -63,4 +63,17 @@ class FaixasEtarias
 
         return $this;
     }
+
+    public function getIdEvento(): Eventos
+    {
+        return $this->id_evento;
+    }
+
+    public function setIdEvento(Eventos $id_evento): self
+    {
+        $this->id_evento = $id_evento;
+
+        return $this;
+    }
+
 }

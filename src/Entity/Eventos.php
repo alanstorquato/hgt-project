@@ -22,6 +22,10 @@ class Eventos
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=255,  nullable=false)
+     */
+    private $nome;
+    /**
      * @ORM\Column(type="date")
      */
     private $data_publicacao;
@@ -116,6 +120,7 @@ class Eventos
         return $this->setores;
     }
 
+
     public function getFaixasEtarias(): Collection
     {
         return $this->faixas_etarias;
@@ -130,6 +135,18 @@ class Eventos
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getNome(): ?string
+    {
+        return $this->nome;
+    }
+
+    public function setNome(string $nome): self
+    {
+        $this->nome = $nome;
+
+        return $this;
     }
 
     public function getDataPublicacao(): ?\DateTimeInterface

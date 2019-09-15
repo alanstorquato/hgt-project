@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
- * @ORM\Table(name="ATRACOES")
  * @ORM\Entity(repositoryClass="App\Repository\AtracoesRepository")
  * @ORM\Table(name="ATRACOES")
  */
