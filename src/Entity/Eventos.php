@@ -6,9 +6,12 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(normalizationContext={
+ *          "groups"={"Eventos"}
+ *     })
  * @ORM\Entity(repositoryClass="App\Repository\EventosRepository")
  * @ORM\Table(name="EVENTOS")
  */
@@ -18,82 +21,99 @@ class Eventos
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_evento", type="integer")
+     * @Groups({"Eventos"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255,  nullable=false)
+     * @Groups({"Eventos"})
      */
     private $nome;
+
     /**
      * @ORM\Column(type="date")
+     * @Groups({"Eventos"})
      */
     private $data_publicacao;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"Eventos"})
      */
     private $imagem;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups({"Eventos"})
      */
     private $dt_inicio_evento;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups({"Eventos"})
      */
     private $dt_fim_evento;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups({"Eventos"})
      */
     private $dt_inicio_venda;
 
     /**
      * @ORM\Column(type="time")
+     * @Groups({"Eventos"})
      */
     private $hora_inicio_evento;
 
     /**
      * @ORM\Column(type="time")
+     * @Groups({"Eventos"})
      */
     private $hora_fim_evento;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"Eventos"})
      */
     private $descricao;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"Eventos"})
      */
     private $visualizacoes;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Produtores", inversedBy="eventos")
      * @ORM\JoinColumn(name="id_produtor", referencedColumnName="id_produtor", nullable=false)
+     * @Groups({"Eventos"})
      */
     private $id_produtor;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Categoria", inversedBy="eventos")
      * @ORM\JoinColumn(name="id_categoria", referencedColumnName="id_categoria", nullable=false)
+     * @Groups({"Eventos"})
      */
     private $id_categoria;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Atracoes", mappedBy="id_evento")
+     * @Groups({"Eventos"})
      */
     private $atracoes;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Setores", mappedBy="id_evento")
+     * @Groups({"Eventos"})
      */
     private $setores;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\FaixasEtarias", mappedBy="id_evento")
+     * @Groups({"Eventos"})
      */
     private $faixas_etarias;
 

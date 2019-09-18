@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -16,22 +17,26 @@ class Atracoes
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_atracao", type="integer")
+     * @Groups({"Eventos"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"Eventos"})
      */
     private $nome;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"Eventos"})
      */
     private $rede_sociais;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Eventos", inversedBy="atracoes")
      * @ORM\JoinColumn(name="id_evento", referencedColumnName="id_evento", nullable=false)
+     * @Groups({"Eventos"})
      */
     private $id_evento;
 
