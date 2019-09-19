@@ -35,8 +35,8 @@ class PasswordHashSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $user->setSenha(
-          $this->passwordEncoder->encodePassword($user, $user->getSenha())
+        $user->setPassword(
+          $this->passwordEncoder->encodePassword($user, $user->getPassword())
         );
 
     }
