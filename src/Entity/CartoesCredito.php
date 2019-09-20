@@ -33,6 +33,11 @@ class CartoesCredito
     private $nome_titular;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $bandeira;
+
+    /**
      * @ORM\Column(type="date")
      */
     private $dt_vencimento;
@@ -75,6 +80,16 @@ class CartoesCredito
         $this->nome_titular = $nome_titular;
 
         return $this;
+    }
+
+    public function getBandeira()
+    {
+        return $this->bandeira;
+    }
+
+    public function setBandeira($bandeira): void
+    {
+        $this->bandeira = $bandeira;
     }
 
     public function getDtVencimento(): ?\DateTimeInterface

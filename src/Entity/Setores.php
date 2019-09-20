@@ -22,26 +22,22 @@ class Setores
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"Eventos"})
      */
     private $nome;
 
     /**
      * @ORM\Column(type="bigint")
-     * @Groups({"Eventos"})
      */
     private $capacidade_max;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"Eventos"})
      */
     private $preco;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Eventos", inversedBy="setores")
      * @ORM\JoinColumn(name="id_evento", referencedColumnName="id_evento", nullable=false)
-     * @Groups({"Eventos"})
      */
     private $id_evento;
 

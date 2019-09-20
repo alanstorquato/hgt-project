@@ -22,6 +22,11 @@ class FormasPagamento
     private $id;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $pagamento;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\CartoesCredito")
      * @ORM\JoinColumn(name="id_cartao", referencedColumnName="id_cartao", nullable=false)
      */
@@ -59,6 +64,17 @@ class FormasPagamento
     {
         return $this->id;
     }
+
+    public function getPagamento()
+    {
+        return $this->pagamento;
+    }
+
+    public function setPagamento($pagamento): void
+    {
+        $this->pagamento = $pagamento;
+    }
+
 
     public function getIdCartao(): ?CartoesCredito
     {

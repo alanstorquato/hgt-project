@@ -12,13 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ApiResource(
- *     itemOperations={"get", "put"},
- *     collectionOperations={"get","post"},
- *     normalizationContext={
- *          "groups"={"read"}
- *     }
- * )
+ * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\UsuariosRepository")
  * @UniqueEntity(
  *     fields={"email"},
@@ -32,40 +26,34 @@ class Usuarios implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_usuario", type="integer")
-     * @Groups({"read"})
      */
     private $id;
 
     /**
-     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $primeiro_nome;
 
     /**
-     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $sobrenome;
 
     /**
-     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="date")
      */
     private $dt_nascimento;
 
     /**
-     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $cpf;
 
     /**
-     * @Groups({"read"})
      * @Assert\NotBlank
      * @Assert\Email()
      * @ORM\Column(name="email", type="string", length=255)
@@ -73,17 +61,10 @@ class Usuarios implements UserInterface
     private $email;
 
     /**
-     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="decimal")
      */
     private $telefone;
-
-    /**
-     * @Groups({"read"})
-     * @ORM\Column(type="string", length=255)
-     */
-    private $img_perfil;
 
 
     /**
@@ -98,72 +79,62 @@ class Usuarios implements UserInterface
     private $password;
 
     /**
-     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $logradouro;
 
     /**
-     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $numero;
 
     /**
-     * @Groups({"read"})
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $complemento;
 
     /**
-     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $cep;
 
     /**
-     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $cidade;
 
     /**
-     * @Groups({"read"})
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $uf;
 
     /**
-     * @Groups({"read"})
      * @ORM\OneToMany(targetEntity="App\Entity\Tickets", mappedBy="id_titular")
      */
     private $tickets;
 
     /**
-     * @Groups({"read"})
      * @ORM\OneToMany(targetEntity="App\Entity\Anuncios", mappedBy="id_usuario")
      */
     private $anuncios;
 
     /**
-     * @Groups({"read"})
      * @ORM\OneToMany(targetEntity="App\Entity\CartoesCredito", mappedBy="id_usuario")
      */
     private $cartoesCredito;
 
     /**
-     * @Groups({"read"})
      * @ORM\OneToMany(targetEntity="App\Entity\Carteira", mappedBy="id_usuario")
      */
     private $carteiras;
 
     /**
-     * @Groups({"read"})
      * @ORM\OneToMany(targetEntity="App\Entity\FormasPagamento", mappedBy="id_usuario")
      */
     private $formas_pagamento;
@@ -208,6 +179,30 @@ class Usuarios implements UserInterface
         return $this->id;
     }
 
+    public function getPrimeiroNome(): string
+    {
+        return $this->primeiro_nome;
+    }
+
+    public function setPrimeiroNome(string $primeiro_nome): self
+    {
+        $this->primeiro_nome = $primeiro_nome;
+
+        return $this;
+    }
+
+    public function getSobrenome(): string
+    {
+        return $this->sobrenome;
+    }
+
+    public function setSobrenome(string $sobrenome): self
+    {
+        $this->sobrenome = $sobrenome;
+
+        return $this;
+    }
+
     public function getEmail(): ?string
     {
         return $this->email;
@@ -238,29 +233,6 @@ class Usuarios implements UserInterface
     }
 
 
-    public function getPrimeiroNome(): string
-    {
-        return $this->primeiro_nome;
-    }
-
-    public function setPrimeiroNome(string $primeiro_nome): self
-    {
-        $this->primeiro_nome = $primeiro_nome;
-
-        return $this;
-    }
-
-    public function getSobrenome(): string
-    {
-        return $this->sobrenome;
-    }
-
-    public function setSobrenome(string $sobrenome): self
-    {
-        $this->sobrenome = $sobrenome;
-
-        return $this;
-    }
 
     public function getDtNascimento(): ?\DateTimeInterface
     {
@@ -292,16 +264,6 @@ class Usuarios implements UserInterface
     public function setTelefone($telefone): void
     {
         $this->telefone = $telefone;
-    }
-
-    public function getImgPerfil()
-    {
-        return $this->img_perfil;
-    }
-
-    public function setImgPerfil($img_perfil): void
-    {
-        $this->img_perfil = $img_perfil;
     }
 
     public function getLogradouro()
@@ -344,33 +306,21 @@ class Usuarios implements UserInterface
         $this->cep = $cep;
     }
 
-    /**
-     * @return mixed
-     */
     public function getCidade()
     {
         return $this->cidade;
     }
 
-    /**
-     * @param mixed $cidade
-     */
     public function setCidade($cidade): void
     {
         $this->cidade = $cidade;
     }
 
-    /**
-     * @return mixed
-     */
     public function getUf()
     {
         return $this->uf;
     }
 
-    /**
-     * @param mixed $uf
-     */
     public function setUf($uf): void
     {
         $this->uf = $uf;
