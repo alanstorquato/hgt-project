@@ -6,10 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource(
- *     itemOperations={"get", "put"},
- *     collectionOperations={"post"},
- * )
+ * @ApiResource()
  * @ORM\Table(name="CARTOES_CREDITO")
  * @ORM\Entity(repositoryClass="App\Repository\CartoesCreditoRepository")
  */
