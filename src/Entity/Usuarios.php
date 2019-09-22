@@ -12,7 +12,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={
+"groups"={"get_usuario"}
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\UsuariosRepository")
  * @UniqueEntity(
  *     fields={"email"},
@@ -30,26 +34,30 @@ class Usuarios implements UserInterface
     private $id;
 
     /**
+     *@Groups({"get_usuario"})
      * @Assert\NotBlank
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="primeiro_nome", type="string", length=255)
      */
-    private $primeiro_nome;
+    private $primeironome;
 
     /**
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get_usuario"})
      */
     private $sobrenome;
 
     /**
      * @Assert\NotBlank
-     * @ORM\Column(type="date")
+     * @ORM\Column(name="dt_nascimento", type="date")
+     *@Groups({"get_usuario"})
      */
-    private $dt_nascimento;
+    private $dtnascimento;
 
     /**
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
+     *@Groups({"get_usuario"})
      */
     private $cpf;
 
@@ -57,12 +65,14 @@ class Usuarios implements UserInterface
      * @Assert\NotBlank
      * @Assert\Email()
      * @ORM\Column(name="email", type="string", length=255)
+     * @Groups({"get_usuario"})
      */
     private $email;
 
     /**
      * @Assert\NotBlank
      * @ORM\Column(type="decimal")
+     * @Groups({"get_usuario"})
      */
     private $telefone;
 
@@ -81,56 +91,66 @@ class Usuarios implements UserInterface
     /**
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
+     *@Groups({"get_usuario"})
      */
     private $logradouro;
 
     /**
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
+     *@Groups({"get_usuario"})
      */
     private $numero;
 
     /**
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
+     *@Groups({"get_usuario"})
      */
     private $complemento;
 
     /**
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
+     *@Groups({"get_usuario"})
      */
     private $cep;
 
     /**
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
+     *@Groups({"get_usuario"})
      */
     private $cidade;
 
     /**
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
+     *@Groups({"get_usuario"})
      */
     private $uf;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Tickets", mappedBy="id_titular")
+     *@Groups({"get_usuario"})
      */
     private $tickets;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Anuncios", mappedBy="id_usuario")
+     *@Groups({"get_usuario"})
      */
     private $anuncios;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\CartoesCredito", mappedBy="id_usuario")
+     *@Groups({"get_usuario"})
      */
     private $cartoesCredito;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Carteira", mappedBy="id_usuario")
+     *@Groups({"get_usuario"})
      */
     private $carteiras;
 
@@ -172,8 +192,6 @@ class Usuarios implements UserInterface
         return $this->formas_pagamento;
     }
 
-
-
     public function getId(): ?int
     {
         return $this->id;
@@ -181,12 +199,12 @@ class Usuarios implements UserInterface
 
     public function getPrimeiroNome(): string
     {
-        return $this->primeiro_nome;
+        return $this->primeironome;
     }
 
-    public function setPrimeiroNome(string $primeiro_nome): self
+    public function setPrimeiroNome($primeironome): self
     {
-        $this->primeiro_nome = $primeiro_nome;
+        $this->primeironome = $primeironome;
 
         return $this;
     }
@@ -232,16 +250,14 @@ class Usuarios implements UserInterface
         return $this;
     }
 
-
-
     public function getDtNascimento(): ?\DateTimeInterface
     {
-        return $this->dt_nascimento;
+        return $this->dtnascimento;
     }
 
-    public function setDtNascimento(\DateTimeInterface $dt_nascimento): self
+    public function setDtNascimento(\DateTimeInterface $dtnascimento): self
     {
-        $this->dt_nascimento = $dt_nascimento;
+        $this->dtnascimento = $dtnascimento;
 
         return $this;
     }

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
@@ -19,29 +20,34 @@ class Tickets
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_ticket", type="integer")
+     * @Groups({"get_usuario"})
      */
     private $id;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(name="is_meia_entrada", type="boolean")
+     * @Groups({"get_usuario"})
      */
-    private $is_meia_entrada;
+    private $ismeiaentrada;
 
     /**
      * @ORM\Column(type="string")
+     * @Groups({"get_usuario"})
      */
     private $setor;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"get_usuario"})
      */
     private $preco;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Eventos", inversedBy="tickets")
      * @ORM\JoinColumn(name="id_evento", referencedColumnName="id_evento", nullable=false)
+     * @Groups({"get_usuario"})
      */
-    private $id_evento;
+    private $idevento;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Usuarios", inversedBy="tickets")
@@ -64,12 +70,12 @@ class Tickets
 
     public function getIsMeiaEntrada(): ?bool
     {
-        return $this->is_meia_entrada;
+        return $this->ismeiaentrada;
     }
 
-    public function setIsMeiaEntrada(bool $is_meia_entrada): self
+    public function setIsMeiaEntrada(bool $ismeiaentrada): self
     {
-        $this->is_meia_entrada = $is_meia_entrada;
+        $this->ismeiaentrada = $ismeiaentrada;
 
         return $this;
     }
@@ -111,27 +117,27 @@ class Tickets
 
         return $this;
     }
-    
+
     public function getIdPedido(): Pedidos
     {
         return $this->id_pedido;
     }
-    
+
     public function setIdPedido(Pedidos $id_pedido): self
     {
         $this->id_pedido = $id_pedido;
-        
+
         return $this;
     }
 
     public function getIdEvento(): Eventos
     {
-        return $this->id_evento;
+        return $this->idevento;
     }
 
-    public function setIdEvento(Eventos $id_evento): self
+    public function setIdEvento(Eventos $idevento): self
     {
-        $this->id_evento = $id_evento;
+        $this->idevento = $idevento;
 
         return $this;
     }

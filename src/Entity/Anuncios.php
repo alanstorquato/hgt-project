@@ -4,8 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\ManyToOne;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
@@ -25,6 +25,7 @@ class Anuncios
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_anuncio", type="integer")
+     * @Groups({"get_usuario"})
      */
     private $id;
 
@@ -37,8 +38,9 @@ class Anuncios
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Tickets")
      * @ORM\JoinColumn(name="id_ticket", referencedColumnName="id_ticket", nullable=false)
+     * @Groups({"get_usuario"})
      */
-    private $id_ticket;
+    private $idticket;
 
     /**
      * @ORM\Column(type="float")
@@ -76,13 +78,13 @@ class Anuncios
 
     public function getIdTicket(): Tickets
     {
-        return $this->id_ticket;
+        return $this->idticket;
     }
 
 
-    public function setIdTicket(Tickets $id_ticket): self
+    public function setIdTicket(Tickets $idticket): self
     {
-        $this->id_ticket = $id_ticket;
+        $this->idticket = $idticket;
 
         return $this;
     }

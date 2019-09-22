@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
@@ -24,11 +25,13 @@ class Carteira
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_carteira", type="integer")
+     *  @Groups({"get_usuario"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"get_usuario"})
      */
     private $saldo;
 

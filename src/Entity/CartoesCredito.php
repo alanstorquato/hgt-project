@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -16,33 +17,39 @@ class CartoesCredito
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_cartao", type="integer")
+     * @Groups({"get_usuario"})
      */
     private $id;
 
     /**
-     * @ORM\Column(type="bigint")
+     * @ORM\Column(name="nro_cartao", type="bigint")
+     * @Groups({"get_usuario"})
      */
-    private $nro_cartao;
+    private $nrocartao;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="nome_titular", type="string", length=255)
+     * @Groups({"get_usuario"})
      */
-    private $nome_titular;
+    private $nometitular;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"get_usuario"})
      */
     private $bandeira;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(name="dt_vencimento", type="date")
+     * @Groups({"get_usuario"})
      */
-    private $dt_vencimento;
+    private $dtvencimento;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="cod_seguranca", type="integer")
+     * @Groups({"get_usuario"})
      */
-    private $cod_seguranca;
+    private $codseguranca;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Usuarios", inversedBy="cartoesCredito")
@@ -57,24 +64,24 @@ class CartoesCredito
 
     public function getNroCartao(): ?string
     {
-        return $this->nro_cartao;
+        return $this->nrocartao;
     }
 
-    public function setNroCartao(string $nro_cartao): self
+    public function setNroCartao(string $nrocartao): self
     {
-        $this->nro_cartao = $nro_cartao;
+        $this->nrocartao = $nrocartao;
 
         return $this;
     }
 
     public function getNomeTitular(): ?string
     {
-        return $this->nome_titular;
+        return $this->nometitular;
     }
 
-    public function setNomeTitular(string $nome_titular): self
+    public function setNomeTitular(string $nometitular): self
     {
-        $this->nome_titular = $nome_titular;
+        $this->nometitular = $nometitular;
 
         return $this;
     }
@@ -91,24 +98,24 @@ class CartoesCredito
 
     public function getDtVencimento(): ?\DateTimeInterface
     {
-        return $this->dt_vencimento;
+        return $this->dtvencimento;
     }
 
-    public function setDtVencimento(\DateTimeInterface $dt_vencimento): self
+    public function setDtVencimento(\DateTimeInterface $dtvencimento): self
     {
-        $this->dt_vencimento = $dt_vencimento;
+        $this->dtvencimento = $dtvencimento;
 
         return $this;
     }
 
     public function getCodSeguranca(): ?int
     {
-        return $this->cod_seguranca;
+        return $this->codseguranca;
     }
 
-    public function setCodSeguranca(int $cod_seguranca): self
+    public function setCodSeguranca(int $codseguranca): self
     {
-        $this->cod_seguranca = $cod_seguranca;
+        $this->codseguranca = $codseguranca;
 
         return $this;
     }

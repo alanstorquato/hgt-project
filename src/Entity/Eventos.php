@@ -19,18 +19,20 @@ class Eventos
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_evento", type="integer")
+     * @Groups({"get_usuario"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255,  nullable=false)
+     * @Groups({"get_usuario"})
      */
     private $nome;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(name="data_publicacao", type="date")
      */
-    private $data_publicacao;
+    private $datapublicacao;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -38,29 +40,33 @@ class Eventos
     private $imagem;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(name="dt_inicio_evento", type="date")
+     * @Groups({"get_usuario"})
      */
-    private $dt_inicio_evento;
+    private $dtinicioevento;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(name="dt_fim_evento", type="date")
+     * @Groups({"get_usuario"})
      */
-    private $dt_fim_evento;
+    private $dtfimevento;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(name="dt_inicio_venda", type="date")
      */
-    private $dt_inicio_venda;
+    private $dtiniciovenda;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(name="hora_inicio_evento", type="time")
+     * @Groups({"get_usuario"})
      */
-    private $hora_inicio_evento;
+    private $horainicioevento;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(name="hora_fim_evento", type="time")
+     * @Groups({"get_usuario"})
      */
-    private $hora_fim_evento;
+    private $horafimevento;
 
     /**
      * @ORM\Column(type="text")
@@ -100,7 +106,7 @@ class Eventos
     private $faixas_etarias;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Tickets", mappedBy="id_evento")
+     * @ORM\OneToMany(targetEntity="App\Entity\Tickets", mappedBy="idevento")
      */
     private $tickets;
 
@@ -153,12 +159,12 @@ class Eventos
 
     public function getDataPublicacao(): ?\DateTimeInterface
     {
-        return $this->data_publicacao;
+        return $this->datapublicacao;
     }
 
-    public function setDataPublicacao(\DateTimeInterface $data_publicacao): self
+    public function setDataPublicacao(\DateTimeInterface $datapublicacao): self
     {
-        $this->data_publicacao = $data_publicacao;
+        $this->datapublicacao = $datapublicacao;
 
         return $this;
     }
@@ -177,60 +183,60 @@ class Eventos
 
     public function getDtInicioEvento(): ?\DateTimeInterface
     {
-        return $this->dt_inicio_evento;
+        return $this->dtinicioevento;
     }
 
-    public function setDtInicioEvento(\DateTimeInterface $dt_inicio_evento): self
+    public function setDtInicioEvento(\DateTimeInterface $dtinicioevento): self
     {
-        $this->dt_inicio_evento = $dt_inicio_evento;
+        $this->dtinicioevento = $dtinicioevento;
 
         return $this;
     }
 
     public function getDtFimEvento(): ?\DateTimeInterface
     {
-        return $this->dt_fim_evento;
+        return $this->dtfimevento;
     }
 
-    public function setDtFimEvento(\DateTimeInterface $dt_fim_evento): self
+    public function setDtFimEvento(\DateTimeInterface $dtfimevento): self
     {
-        $this->dt_fim_evento = $dt_fim_evento;
+        $this->dtfimevento = $dtfimevento;
 
         return $this;
     }
 
     public function getDtInicioVenda(): ?\DateTimeInterface
     {
-        return $this->dt_inicio_venda;
+        return $this->dtiniciovenda;
     }
 
-    public function setDtInicioVenda(\DateTimeInterface $dt_inicio_venda): self
+    public function setDtInicioVenda(\DateTimeInterface $dtiniciovenda): self
     {
-        $this->dt_inicio_venda = $dt_inicio_venda;
+        $this->dtiniciovenda = $dtiniciovenda;
 
         return $this;
     }
 
     public function getHoraInicioEvento(): ?\DateTimeInterface
     {
-        return $this->hora_inicio_evento;
+        return $this->horainicioevento;
     }
 
-    public function setHoraInicioEvento(\DateTimeInterface $hora_inicio_evento): self
+    public function setHoraInicioEvento(\DateTimeInterface $horainicioevento): self
     {
-        $this->hora_inicio_evento = $hora_inicio_evento;
+        $this->horainicioevento = $horainicioevento;
 
         return $this;
     }
 
     public function getHoraFimEvento(): ?\DateTimeInterface
     {
-        return $this->hora_fim_evento;
+        return $this->horafimevento;
     }
 
-    public function setHoraFimEvento(\DateTimeInterface $hora_fim_evento): self
+    public function setHoraFimEvento(\DateTimeInterface $horafimevento): self
     {
-        $this->hora_fim_evento = $hora_fim_evento;
+        $this->horafimevento = $horafimevento;
 
         return $this;
     }
