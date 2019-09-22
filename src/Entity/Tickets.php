@@ -11,14 +11,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *      *     normalizationContext={"groups"={"get"}},
  *     itemOperations={
  *         "get"={
- *              "normalization_context"={"groups"={"api_usuarios_tickets_get_subresource"}}
+ *              "normalization_context"={"groups"={"get_tickets"}}
  *          },
  *         "put", "delete"
  *     },
  *     collectionOperations={
  *          "post",
-            "get"={
- *              "normalization_context"={"groups"={"api_usuarios_tickets_get_subresource"}}
+ *           "get"={
+ *              "normalization_context"={"groups"={"get_tickets"}}
  *          },
  *     }
  * )
@@ -31,39 +31,39 @@ class Tickets
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_ticket", type="integer")
-     * @Groups({"get_usuario", "api_usuarios_tickets_get_subresource"})
+     * @Groups({"get_usuario", "get_tickets"})
      */
     private $id;
 
     /**
      * @ORM\Column(name="is_meia_entrada", type="boolean")
-     * @Groups({"get_usuario", "api_usuarios_tickets_get_subresource"})
+     * @Groups({"get_usuario", "get_tickets"})
      */
     private $ismeiaentrada;
 
     /**
      * @ORM\Column(type="string")
-     * @Groups({"get_usuario", "api_usuarios_tickets_get_subresource"})
+     * @Groups({"get_usuario", "get_tickets"})
      */
     private $setor;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"get_usuario", "api_usuarios_tickets_get_subresource"})
+     * @Groups({"get_usuario", "get_tickets"})
      */
     private $preco;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Eventos", inversedBy="tickets")
      * @ORM\JoinColumn(name="id_evento", referencedColumnName="id_evento", nullable=false)
-     * @Groups({"get_usuario", "api_usuarios_tickets_get_subresource"})
+     * @Groups({"get_usuario", "get_tickets"})
      */
     private $idevento;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Usuarios", inversedBy="tickets")
      * @ORM\JoinColumn(name="id_titular", referencedColumnName="id_usuario", nullable=false)
-     * @Groups({"api_usuarios_tickets_get_subresource"})
+     * @Groups({"get_tickets"})
      */
     private $idtitular;
 

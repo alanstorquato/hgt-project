@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -18,11 +19,13 @@ class Pedidos
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_pedido", type="integer")
+     * @Groups({"get_usuario"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"get_usuario"})
      */
     private $is_valido;
 
@@ -34,6 +37,7 @@ class Pedidos
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Tickets", mappedBy="id_pedido")
+     * @Groups({"get_usuario"})
      */
     private $tickets;
 

@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -23,18 +24,21 @@ class FormasPagamento
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"get_usuario"})
      */
     private $pagamento;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\CartoesCredito")
      * @ORM\JoinColumn(name="id_cartao", referencedColumnName="id_cartao", nullable=false)
+     * @Groups({"get_usuario"})
      */
     private $id_cartao;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Carteira")
      * @ORM\JoinColumn(name="id_carteira", referencedColumnName="id_carteira", nullable=false)
+     * @Groups({"get_usuario"})
      */
     private $id_carteira;
 
@@ -46,6 +50,7 @@ class FormasPagamento
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Pedidos", mappedBy="id_forma_pg")
+     * @Groups({"get_usuario"})
      */
     private $pedidos;
 

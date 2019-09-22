@@ -162,21 +162,22 @@ class Usuarios implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Carteira", mappedBy="id_usuario")
-     *@Groups({"get_usuario"})
+     * @Groups({"get_usuario"})
      */
     private $carteiras;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\FormasPagamento", mappedBy="id_usuario")
+     * @Groups({"get_usuario"})
      */
-    private $formas_pagamento;
+    private $formaspagamento;
 
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
         $this->anuncios = new ArrayCollection();
         $this->cartoesCredito = new ArrayCollection();
-        $this->formas_pagamento = new ArrayCollection();
+        $this->formaspagamento = new ArrayCollection();
     }
 
     public function getTickets(): Collection
@@ -201,7 +202,7 @@ class Usuarios implements UserInterface
 
     public function getFormasPagamento(): Collection
     {
-        return $this->formas_pagamento;
+        return $this->formaspagamento;
     }
 
     public function getId(): ?int
