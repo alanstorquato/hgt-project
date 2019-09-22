@@ -14,8 +14,18 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ApiResource(
- *     normalizationContext={
-            "groups"={"get_usuario"}
+ *      normalizationContext={"groups"={"get"}},
+ *     itemOperations={
+ *         "get"={
+ *              "normalization_context"={"groups"={"get_usuario"}}
+ *          },
+ *         "put", "delete"
+ *     },
+ *     collectionOperations={
+ *          "post",
+            "get"={
+ *              "normalization_context"={"groups"={"get_usuario"}}
+ *          },
  *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\UsuariosRepository")
@@ -132,7 +142,7 @@ class Usuarios implements UserInterface
     private $uf;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Tickets", mappedBy="id_titular")
+     * @ORM\OneToMany(targetEntity="App\Entity\Tickets", mappedBy="idtitular")
      * @Groups({"get_usuario"})
      * @ApiSubresource()
      */

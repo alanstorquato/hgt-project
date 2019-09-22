@@ -8,8 +8,18 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     normalizationContext={
-            "groups"={"api_usuarios_tickets_get_subresource"}
+ *      *     normalizationContext={"groups"={"get"}},
+ *     itemOperations={
+ *         "get"={
+ *              "normalization_context"={"groups"={"api_usuarios_tickets_get_subresource"}}
+ *          },
+ *         "put", "delete"
+ *     },
+ *     collectionOperations={
+ *          "post",
+            "get"={
+ *              "normalization_context"={"groups"={"api_usuarios_tickets_get_subresource"}}
+ *          },
  *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\TicketsRepository")
@@ -53,8 +63,9 @@ class Tickets
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Usuarios", inversedBy="tickets")
      * @ORM\JoinColumn(name="id_titular", referencedColumnName="id_usuario", nullable=false)
+     * @Groups({"api_usuarios_tickets_get_subresource"})
      */
-    private $id_titular;
+    private $idtitular;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Pedidos", inversedBy="tickets")
@@ -109,12 +120,12 @@ class Tickets
 
     public function getIdTitular(): Usuarios
     {
-        return $this->id_titular;
+        return $this->idtitular;
     }
 
-    public function setIdTitular(Usuarios $id_titular): self
+    public function setIdTitular(Usuarios $idtitular): self
     {
-        $this->id_titular = $id_titular;
+        $this->idtitular = $idtitular;
 
         return $this;
     }

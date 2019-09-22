@@ -10,8 +10,18 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     normalizationContext={
-            "groups"={"get_eventos"}
+ *     normalizationContext={"groups"={"get"}},
+ *     itemOperations={
+ *         "get"={
+ *              "normalization_context"={"groups"={"get_eventos"}}
+ *          },
+ *         "put", "delete"
+ *     },
+ *     collectionOperations={
+ *          "post",
+            "get"={
+ *              "normalization_context"={"groups"={"get_eventos"}}
+ *          },
  *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\EventosRepository")
