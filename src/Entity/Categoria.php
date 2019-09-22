@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -18,16 +19,19 @@ class Categoria
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_categoria", type="integer")
+     *  @Groups({"get_eventos"})
      */
+
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get_eventos"})
      */
     private $nome;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Eventos", mappedBy="id_categoria")
+     * @ORM\OneToMany(targetEntity="App\Entity\Eventos", mappedBy="idcategoria")
      */
     private $eventos;
 

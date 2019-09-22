@@ -9,7 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={
+            "groups"={"get_eventos"}
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\EventosRepository")
  * @ORM\Table(name="EVENTOS")
  */
@@ -19,91 +23,101 @@ class Eventos
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_evento", type="integer")
-     * @Groups({"get_usuario"})
+     * @Groups({"get_usuario", "get_eventos"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255,  nullable=false)
-     * @Groups({"get_usuario"})
+     * @Groups({"get_usuario", "get_eventos"})
      */
     private $nome;
 
     /**
      * @ORM\Column(name="data_publicacao", type="date")
+     * @Groups({"get_eventos"})
      */
     private $datapublicacao;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get_eventos"})
      */
     private $imagem;
 
     /**
      * @ORM\Column(name="dt_inicio_evento", type="date")
-     * @Groups({"get_usuario"})
+     * @Groups({"get_usuario", "get_eventos"})
      */
     private $dtinicioevento;
 
     /**
      * @ORM\Column(name="dt_fim_evento", type="date")
-     * @Groups({"get_usuario"})
+     * @Groups({"get_usuario", "get_eventos"})
      */
     private $dtfimevento;
 
     /**
      * @ORM\Column(name="dt_inicio_venda", type="date")
+     * @Groups({"get_eventos"})
      */
     private $dtiniciovenda;
 
     /**
      * @ORM\Column(name="hora_inicio_evento", type="time")
-     * @Groups({"get_usuario"})
+     * @Groups({"get_usuario", "get_eventos"})
      */
     private $horainicioevento;
 
     /**
      * @ORM\Column(name="hora_fim_evento", type="time")
-     * @Groups({"get_usuario"})
+     * @Groups({"get_usuario", "get_eventos"})
      */
     private $horafimevento;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"get_eventos"})
      */
     private $descricao;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"get_eventos"})
      */
     private $visualizacoes;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Produtores", inversedBy="eventos")
      * @ORM\JoinColumn(name="id_produtor", referencedColumnName="id_produtor", nullable=false)
+     * @Groups({"get_eventos"})
      */
-    private $id_produtor;
+    private $idprodutor;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Categoria", inversedBy="eventos")
      * @ORM\JoinColumn(name="id_categoria", referencedColumnName="id_categoria", nullable=false)
+     * @Groups({"get_eventos"})
      */
-    private $id_categoria;
+    private $idcategoria;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Atracoes", mappedBy="id_evento")
+     * @Groups({"get_eventos"})
      */
     private $atracoes;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Setores", mappedBy="id_evento")
+     * @Groups({"get_eventos"})
      */
     private $setores;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\FaixasEtarias", mappedBy="id_evento")
+     * @Groups({"get_eventos"})
      */
-    private $faixas_etarias;
+    private $faixasetarias;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Tickets", mappedBy="idevento")
@@ -114,7 +128,7 @@ class Eventos
     {
         $this->atracoes = new ArrayCollection();
         $this->setores = new ArrayCollection();
-        $this->faixas_etarias = new ArrayCollection();
+        $this->faixasetarias = new ArrayCollection();
         $this->tickets = new  ArrayCollection();
     }
 
@@ -131,7 +145,7 @@ class Eventos
 
     public function getFaixasEtarias(): Collection
     {
-        return $this->faixas_etarias;
+        return $this->faixasetarias;
     }
 
     public function getTickets(): Collection
@@ -267,24 +281,24 @@ class Eventos
 
     public function getIdProdutor(): Produtores
     {
-        return $this->id_produtor;
+        return $this->idprodutor;
     }
 
-    public function setIdProdutor(Produtores $id_produtor): self
+    public function setIdProdutor(Produtores $idprodutor): self
     {
-        $this->id_produtor = $id_produtor;
+        $this->idprodutor = $idprodutor;
 
         return $this;
     }
 
     public function getIdCategoria(): Categoria
     {
-        return $this->id_categoria;
+        return $this->idcategoria;
     }
 
-    public function setIdCategoria(Categoria $id_categoria): self
+    public function setIdCategoria(Categoria $idcategoria): self
     {
-        $this->id_categoria = $id_categoria;
+        $this->idcategoria = $idcategoria;
 
         return $this;
     }

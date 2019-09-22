@@ -17,18 +17,21 @@ class Atracoes
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_atracao", type="integer")
+     * @Groups({"get_eventos"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get_eventos"})
      */
     private $nome;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="rede_sociais", type="string", length=255)
+     * @Groups({"get_eventos"})
      */
-    private $rede_sociais;
+    private $redesociais;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Eventos", inversedBy="atracoes")
@@ -55,12 +58,12 @@ class Atracoes
 
     public function getRedeSociais(): ?string
     {
-        return $this->rede_sociais;
+        return $this->redesociais;
     }
 
-    public function setRedeSociais(string $rede_sociais): self
+    public function setRedeSociais(string $redesociais): self
     {
-        $this->rede_sociais = $rede_sociais;
+        $this->redesociais = $redesociais;
 
         return $this;
     }

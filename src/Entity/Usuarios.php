@@ -14,7 +14,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ApiResource(
  *     normalizationContext={
-"groups"={"get_usuario"}
+            "groups"={"get_usuario"}
  *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\UsuariosRepository")

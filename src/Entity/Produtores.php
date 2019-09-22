@@ -63,7 +63,7 @@ class Produtores
     private $telefone_secundario;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Eventos", mappedBy="id_produtor")
+     * @ORM\OneToMany(targetEntity="App\Entity\Eventos", mappedBy="idprodutor")
      */
     private $eventos;
 

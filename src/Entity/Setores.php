@@ -17,21 +17,25 @@ class Setores
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_setor", type="integer")
+     * @Groups({"get_eventos"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get_eventos"})
      */
     private $nome;
 
     /**
-     * @ORM\Column(type="bigint")
+     * @ORM\Column(name="capacidade_max", type="bigint")
+     * @Groups({"get_eventos"})
      */
-    private $capacidade_max;
+    private $capacidademax;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"get_eventos"})
      */
     private $preco;
 
@@ -44,8 +48,9 @@ class Setores
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Locais", inversedBy="setores")
      * @ORM\JoinColumn(name="id_local", referencedColumnName="id_local", nullable=false)
+     * @Groups({"get_eventos"})
      */
-    private $id_local;
+    private $idlocal;
 
     public function getId(): ?int
     {
@@ -66,12 +71,12 @@ class Setores
 
     public function getCapacidadeMax(): ?string
     {
-        return $this->capacidade_max;
+        return $this->capacidademax;
     }
 
-    public function setCapacidadeMax(string $capacidade_max): self
+    public function setCapacidadeMax(string $capacidademax): self
     {
-        $this->capacidade_max = $capacidade_max;
+        $this->capacidademax = $capacidademax;
 
         return $this;
     }
@@ -102,13 +107,13 @@ class Setores
 
     public function getIdLocal(): Locais
     {
-        return $this->id_local;
+        return $this->idlocal;
     }
 
 
-    public function setIdLocal(Locais $id_local): self
+    public function setIdLocal(Locais $idlocal): self
     {
-        $this->id_local = $id_local;
+        $this->idlocal = $idlocal;
 
         return $this;
     }

@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -23,6 +24,7 @@ class Locais
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get_eventos"})
      */
     private $nome;
 
@@ -52,12 +54,13 @@ class Locais
     private $cep;
 
     /**
-     * @ORM\Column(type="bigint")
+     * @ORM\Column(name="capacidade_max", type="bigint")
+     * @Groups({"get_eventos"})
      */
-    private $capacidade_max;
+    private $capacidademax;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Setores", mappedBy="id_local")
+     * @ORM\OneToMany(targetEntity="App\Entity\Setores", mappedBy="idlocal")
      */
     private $setores;
 
@@ -152,12 +155,12 @@ class Locais
 
     public function getCapacidadeMaxima(): ?string
     {
-        return $this->capacidade_max;
+        return $this->capacidademax;
     }
 
-    public function setCapacidadeMaxima(string $capacidade_max): self
+    public function setCapacidadeMaxima(string $capacidademax): self
     {
-        $this->capacidade_max = $capacidade_max;
+        $this->capacidademax = $capacidademax;
 
         return $this;
     }

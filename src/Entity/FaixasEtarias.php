@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -16,11 +17,13 @@ class FaixasEtarias
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_faixa_etaria", type="integer")
+     * @Groups({"get_eventos"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"get_eventos"})
      */
     private $nome;
 
@@ -30,7 +33,7 @@ class FaixasEtarias
     private $descricao;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Eventos", inversedBy="faixas_etarias")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Eventos", inversedBy="faixasetarias")
      * @ORM\JoinColumn(name="id_evento", referencedColumnName="id_evento", nullable=false)
      */
     private $id_evento;
