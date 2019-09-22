@@ -30,26 +30,31 @@ class Locais
 
     /**
      * @ORM\Column(type="string", length=2)
+     * @Groups({"get_eventos"})
      */
     private $uf;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *  @Groups({"get_eventos"})
      */
     private $cidade;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *  @Groups({"get_eventos"})
      */
     private $endereco;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *  @Groups({"get_eventos"})
      */
     private $bairro;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *  @Groups({"get_eventos"})
      */
     private $cep;
 

@@ -28,7 +28,5 @@ class UsuariosController extends AbstractController
         $usuario = $repository->findOneBy(['cpf' => $cpf]);
 
         return $this->json($usuario);
-        var_dump($usuario->getEmail());
-        die();
     }
 }
