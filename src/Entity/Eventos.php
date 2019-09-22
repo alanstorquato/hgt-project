@@ -23,13 +23,13 @@ class Eventos
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_evento", type="integer")
-     * @Groups({"get_usuario", "get_eventos"})
+     * @Groups({"get_usuario", "get_eventos", "api_usuarios_tickets_get_subresource"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255,  nullable=false)
-     * @Groups({"get_usuario", "get_eventos"})
+     * @Groups({"get_usuario", "get_eventos", "api_usuarios_tickets_get_subresource"})
      */
     private $nome;
 
@@ -47,13 +47,13 @@ class Eventos
 
     /**
      * @ORM\Column(name="dt_inicio_evento", type="date")
-     * @Groups({"get_usuario", "get_eventos"})
+     * @Groups({"get_usuario", "get_eventos", "api_usuarios_tickets_get_subresource"})
      */
     private $dtinicioevento;
 
     /**
      * @ORM\Column(name="dt_fim_evento", type="date")
-     * @Groups({"get_usuario", "get_eventos"})
+     * @Groups({"get_usuario", "get_eventos", "api_usuarios_tickets_get_subresource"})
      */
     private $dtfimevento;
 
@@ -65,13 +65,13 @@ class Eventos
 
     /**
      * @ORM\Column(name="hora_inicio_evento", type="time")
-     * @Groups({"get_usuario", "get_eventos"})
+     * @Groups({"get_usuario", "get_eventos", "api_usuarios_tickets_get_subresource"})
      */
     private $horainicioevento;
 
     /**
      * @ORM\Column(name="hora_fim_evento", type="time")
-     * @Groups({"get_usuario", "get_eventos"})
+     * @Groups({"get_usuario", "get_eventos", "api_usuarios_tickets_get_subresource"})
      */
     private $horafimevento;
 
