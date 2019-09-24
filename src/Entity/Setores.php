@@ -48,7 +48,7 @@ class Setores
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Locais", inversedBy="setores")
      * @ORM\JoinColumn(name="id_local", referencedColumnName="id_local", nullable=false)
-     * @Groups({"get_eventos"})
+     * @Groups({"get_usuario", "get_eventos"})
      */
     private $idlocal;
 

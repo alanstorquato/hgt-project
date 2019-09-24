@@ -119,7 +119,7 @@ class Eventos
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Setores", mappedBy="id_evento")
-     * @Groups({"get_eventos"})
+     * @Groups({"get_usuario", "get_eventos"})
      */
     private $setores;
 

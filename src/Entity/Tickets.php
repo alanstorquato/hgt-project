@@ -8,7 +8,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *      *     normalizationContext={"groups"={"get"}},
+ *     normalizationContext={"groups"={"get"}},
  *     itemOperations={
  *         "get"={
  *              "normalization_context"={"groups"={"get_tickets"}}
