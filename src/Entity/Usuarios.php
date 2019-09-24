@@ -150,7 +150,8 @@ class Usuarios implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Anuncios", mappedBy="id_usuario")
-     *@Groups({"get_usuario"})
+     * @Groups({"get_usuario"})
+     * @ApiSubresource()
      */
     private $anuncios;
 
