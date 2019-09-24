@@ -17,9 +17,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     },
  *     collectionOperations={
  *          "post",
- *          "api_usuarios_tickets_get_subresource"={
- *              "normalization_context"={"groups"={"get_tickets_by_user"}}
- *          },
  *           "get"={
  *              "normalization_context"={"groups"={"get_tickets"}}
  *          },
@@ -34,32 +31,32 @@ class Tickets
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id_ticket", type="integer")
-     * @Groups({"get_usuario", "get_tickets", "get_tickets_by_user"})
+     * @Groups({"get_usuario", "get_tickets"})
      */
     private $id;
 
     /**
      * @ORM\Column(name="is_meia_entrada", type="boolean")
-     * @Groups({"get_usuario", "get_tickets","get_tickets_by_user"})
+     * @Groups({"get_usuario", "get_tickets"})
      */
     private $ismeiaentrada;
 
     /**
      * @ORM\Column(type="string")
-     * @Groups({"get_usuario", "get_tickets","get_tickets_by_user"})
+     * @Groups({"get_usuario", "get_tickets"})
      */
     private $setor;
 
     /**
      * @ORM\Column(type="float")
-     * @Groups({"get_usuario", "get_tickets","get_tickets_by_user"})
+     * @Groups({"get_usuario", "get_tickets"})
      */
     private $preco;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Eventos", inversedBy="tickets")
      * @ORM\JoinColumn(name="id_evento", referencedColumnName="id_evento", nullable=false)
-     * @Groups({"get_usuario", "get_tickets", "get_tickets_by_user"})
+     * @Groups({"get_usuario", "get_tickets"})
      */
     private $idevento;
 
