@@ -40,8 +40,15 @@ class Anuncios
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"get_usuario"})
      */
     private $preco;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"get_usuario"})
+     */
+    private $is_vendido;
 
     public function getId(): ?int
     {
@@ -58,6 +65,18 @@ class Anuncios
         $this->preco = $preco;
 
         return $this;
+    }
+
+    public function getIsVendido(): ?bool
+    {
+        return $this->is_vendido;
+    }
+
+    public function setIsVendido(bool $is_vendido): self
+    {
+        $this->is_vendido = $is_vendido;
+
+        return  $this;
     }
 
     public function getIdUsuario(): Usuarios
@@ -84,4 +103,6 @@ class Anuncios
 
         return $this;
     }
+
+
 }
