@@ -51,7 +51,7 @@ class Eventos
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"get_eventos"})
+     * @Groups({"get_usuario", "get_eventos"})
      */
     private $imagem;
 
