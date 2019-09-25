@@ -8,10 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource(
- *     itemOperations={"get", "put"},
- *     collectionOperations={"post"},
- * )
+ * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\AnunciosRepository")
  * @ORM\Table(name="ANUNCIOS")
  */
