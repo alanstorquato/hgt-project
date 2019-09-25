@@ -13,10 +13,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     collectionOperations={"post"},
  * )
  * @ORM\Entity(repositoryClass="App\Repository\AnunciosRepository")
- * @UniqueEntity(
- *     fields={"id_usuario", "id_ticket"},
- *     message="Anuncio já cadastrado"
- * )
  * @ORM\Table(name="ANUNCIOS")
  */
 class Anuncios
