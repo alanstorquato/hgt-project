@@ -46,10 +46,10 @@ class Anuncios
     private $preco;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(name="is_vendido", type="boolean", nullable=true)
      * @Groups({"get_usuario"})
      */
-    private $is_vendido;
+    private $isvendido;
 
     public function getId(): ?int
     {
@@ -70,12 +70,12 @@ class Anuncios
 
     public function getIsVendido(): ?bool
     {
-        return $this->is_vendido;
+        return $this->isvendido;
     }
 
-    public function setIsVendido(bool $is_vendido): self
+    public function setIsVendido(bool $isvendido): self
     {
-        $this->is_vendido = $is_vendido;
+        $this->isvendido = $isvendido;
 
         return  $this;
     }
