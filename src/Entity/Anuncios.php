@@ -9,6 +9,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
+ *  @UniqueEntity(
+ *     fields={"id_usuario", "idticket"},
+ *     message="Anuncio já cadastrado"
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\AnunciosRepository")
  * @ORM\Table(name="ANUNCIOS")
  */
