@@ -54,7 +54,7 @@ class Tickets
     private $preco;
 
     /**
-     * @ORM\Column(name="is_presente", type="float", nullable=true)
+     * @ORM\Column(name="is_presente", type="boolean", nullable=true)
      * @Groups({"get_usuario", "get_tickets"})
      */
     private $ispresente;
