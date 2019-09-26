@@ -8,7 +8,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     attributes={"order"={"id":"DESC"}}
+ * )
  *  @UniqueEntity(
  *     fields={"id_usuario", "idticket"},
  *     message="Anuncio já cadastrado"
