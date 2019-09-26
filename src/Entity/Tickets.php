@@ -54,6 +54,12 @@ class Tickets
     private $preco;
 
     /**
+     * @ORM\Column(name="is_presente", type="float", nullable=true)
+     * @Groups({"get_usuario", "get_tickets"})
+     */
+    private $ispresente;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Eventos", inversedBy="tickets")
      * @ORM\JoinColumn(name="id_evento", referencedColumnName="id_evento", nullable=false)
      * @Groups({"get_usuario", "get_tickets"})
@@ -116,7 +122,17 @@ class Tickets
         return $this;
     }
 
+    public function getIspresente(): ?bool
+    {
+        return $this->ispresente;
+    }
 
+    public function setIspresente(bool $ispresente): self
+    {
+        $this->ispresente = $ispresente;
+
+        return $this;
+    }
 
     public function getIdTitular(): Usuarios
     {

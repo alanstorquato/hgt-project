@@ -12,7 +12,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiFilter(
- *     SearchFilter::class, properties={"id": "exact", "nome": "partial"}
+ *     SearchFilter::class, properties={"id": "exact", "nome": "ipartial"}
  * )
  * @ApiResource(
  *     normalizationContext={"groups"={"get"}},
@@ -59,6 +59,12 @@ class Eventos
      * @Groups({"get_usuario", "get_eventos"})
      */
     private $imagem;
+
+    /**
+     * @ORM\Column(name="imagem_site", type="string", length=255, nullable=true)
+     * @Groups({"get_usuario", "get_eventos"})
+     */
+    private $imagemsite;
 
     /**
      * @ORM\Column(name="dt_inicio_evento", type="date")
@@ -206,6 +212,18 @@ class Eventos
     public function setImagem(string $imagem): self
     {
         $this->imagem = $imagem;
+
+        return $this;
+    }
+
+    public function getImagemsite(): ?string
+    {
+        return $this->imagemsite;
+    }
+
+    public function setImagemsite(string $imagemsite): self
+    {
+        $this->imagemsite = $imagemsite;
 
         return $this;
     }

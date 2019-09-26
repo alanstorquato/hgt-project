@@ -16,7 +16,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  *  @ApiFilter(
- *     SearchFilter::class, properties={"id": "exact", "email": "exact"}
+ *     SearchFilter::class, properties={"id": "exact", "email": "iexact"}
  * )
  * @ApiResource(
  *      normalizationContext={"groups"={"get"}},
