@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UsuariosController extends AbstractController
 {
     /**
-     * @Route("/api/usuarios/find_by_email/{email}", name="find_usuario_by_cpf")
+     * @Route("/api/usuarios/find_by_email/{email}", name="find_usuario_by_cpf", methods={"GET"})
      */
     public function findUserByEmail($email){
         $repository = $this->getDoctrine()->getRepository(Usuarios::class);
@@ -20,7 +20,7 @@ class UsuariosController extends AbstractController
     }
 
     /**
-     * @Route("/api/usuarios/find_by_cpf/{cpf}", name="find_usuario_by_cpf")
+     * @Route("/api/usuarios/find_by_cpf/{cpf}", name="find_usuario_by_cpf", methods={"GET"})
      */
     public function findUserByCpf($cpf){
         $repository = $this->getDoctrine()->getRepository(Usuarios::class);
