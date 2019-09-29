@@ -60,6 +60,12 @@ class Tickets
     private $ispresente;
 
     /**
+     * @ORM\Column(name="is_anunciado", type="boolean", nullable=true)
+     * @Groups({"get_usuario", "get_tickets"})
+     */
+    private $isanunciado;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Eventos", inversedBy="tickets")
      * @ORM\JoinColumn(name="id_evento", referencedColumnName="id_evento", nullable=false)
      * @Groups({"get_usuario", "get_tickets"})
@@ -130,6 +136,18 @@ class Tickets
     public function setIspresente(bool $ispresente): self
     {
         $this->ispresente = $ispresente;
+
+        return $this;
+    }
+
+    public function getIsanunciado(): ?bool
+    {
+        return $this->isanunciado;
+    }
+
+    public function setIsanunciado(bool $isanunciado): self
+    {
+        $this->isanunciado = $isanunciado;
 
         return $this;
     }
